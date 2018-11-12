@@ -22,7 +22,7 @@
     
     // Override point for customization after application launch.
     NSString *path = [[NSBundle mainBundle]pathForResource:@"Header" ofType:@"html"];
-    NSString *path2 = [[NSBundle mainBundle]pathForResource:@"Content" ofType:@"html"];
+    NSString *path2 = [[NSBundle mainBundle]pathForResource:@"BOMView" ofType:@"html"];
     NSString *headerHtmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSString *contentHtmlString = [NSString stringWithContentsOfFile:path2 encoding:NSUTF8StringEncoding error:nil];
     
@@ -34,18 +34,18 @@
     }
     NSString *localSavedPath = [folderPath stringByAppendingPathComponent:@"render.pdf"];
     
-//    BNHtmlPdfKit *pdf = [[BNHtmlPdfKit alloc]init];
-//    pdf.delegate = self;
-//    [pdf saveHtmlAsPdf:headerHtmlString toFile:localSavedPath];
-    
-    BNHtmlPdfKit *pdf = [BNHtmlPdfKit saveHtmlAsPdf:contentHtmlString toFile:localSavedPath pageHeaderHtml:headerHtmlString pageFooterHtml:nil success:^(NSString *filename) {
+    BNHtmlPdfKit *pdf = [BNHtmlPdfKit saveHtmlAsPdf:contentHtmlString
+                                             toFile:localSavedPath
+                                     pageHeaderHtml:headerHtmlString
+                                     pageFooterHtml:nil
+                                            success:^(NSString *filename) {
         
-    } failure:^(NSError *error) {
+                                            }
+                                            failure:^(NSError *error) {
         
-    }];
+                                            }];
     
     self.pdf = pdf;
-    
 
 }
 

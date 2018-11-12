@@ -1,92 +1,18 @@
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <style>
-        /* ----------------------------------- 表格 ----------------------------------- */
-
-        table.dataintable {
-            margin-top: 15px;
-            border-collapse: collapse;
-            border: 1px solid #aaa;
-            width: 100%;
-        }
-
-        table.dataintable td {
-            vertical-align: text-top;
-            padding: 6px 15px 6px 6px;
-            border: 1px solid #aaa;
-        }
-
-        table.dataintable tr:nth-child(odd) {
-            background-color: #F5F5F5;
-        }
-
-        table.dataintable tr:nth-child(even) {
-            background-color: #fff;
-        }
-
-        table.dataintable pre {
-            width: auto;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            background-color: transparent;
-        }
-
-        table.dataintable p {
-            margin: 0 0 2px 0;
-        }
-
-        table.dataintable td em {
-            color: #0000ff;
-            font-weight: normal;
-        }
-
-        table.dataintable .table_value {
-            color: #0F93D2;
-        }
-
-        tr td:last-child{
-            width:1%;
-            white-space:nowrap;
-        }
-
-        td{
-            border:1px solid #000;
-        }
-
-        tr td:last-child{
-            width:1%;
-            white-space:nowrap;
-        }
-    </style>
-</head>
-
-</html> -->
-
-
 <head>
 <style>
 
     table.dataintable {
-            border-collapse: collapse;
-            border: 1px solid #aaa;
-        }
-
-    table.dataintable td {
-        padding: 6px 15px 6px 6px;
+        border-collapse: collapse;
         border: 1px solid #aaa;
     }
 
-    td{
-        border:1px solid #000;
-        text-align:"center";
+    table.dataintable td {
+        border: 1px solid #aaa;
     }
 
-    tr td:last-child{
-        width:1%;
-        white-space:nowrap;
+    td {
+        border:1px solid #000;
+        text-align:"center";
     }
 
     table.dataintable tr:nth-child(odd) {
@@ -98,7 +24,7 @@
     }
 
     table.dataintable p {
-            margin: 20px 0 0 0;
+        margin: 10px 0 0 0;
     }
 
 </style>
@@ -106,74 +32,62 @@
 
 <body>
     <div>
-            <table class="dataintable" style="width: 100%;">
+            <table id="bomList" class="dataintable" style="width: 100%;">
                     <tr>
-                        <td class="block" align="center">
-                                <img width="200" src="BOM.PNG" alt="">
-                            </td>
-                        <td class="block" align="center">this should stretch</td>
-                        <td class="block" align="center">
+                        <td align="center" id="content" height="700px">
+                                <img width=150 src="BOM.PNG" alt="">
+                        </td>
+                        <td align="left" id="content" height="700px">
                             <div style="margin: 20px 20px 20px 20px">
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                            </div>
-                       </td>
-                        <td class="block" align="center">
-                            <div style="margin: 20px 20px 20px 20px">
-                                amount x 2
+                                <p>CommissionID: 690017164</p>
+                                <p>MaterialID: 50624749</p>
+                                <p>Description: TABLILLA ANTIDESLIZANTE P1000 </p>
+                                <p>Amount: 2</p>
+                                <p>Note: This is a note form user XXXXXXXXX </p>
                             </div>
                         </td>
+                        <td  align="left" id="content">
+                            <div style="margin: 20px 20px 20px 20px">
+                                   <p>GroupID: 500</p>
+                                   <p>SubGroupID: 510</p>
+                                   <p>SubSubGroupID: 513</p>
+                                   <p>DimensionUnit: mm</p>
+                                   <p>Material: N/A</p>
+                                   <p>SEPEParameter: N/A</p>
+                                   <p>DrawingNo: N/A</p>
+                                   <p>Version: N/A</p>
+                                   <p>PartnumID: </p>
+                                   <p>StandardMaterial: False</p>
+                                   <p>WearPart: False</p>
+                                   <p>Color: N/A</p>
+                                   <p>Diameter: 0</p>
+                                   <p>Weight: 4.9 kg</p>
+                                   <p>Length: 1138.5 mm</p>
+                                   <p>Width: 84 mm</p>
+                                   <p>Height: 140.8 mm</p>
+                                   <p>Text1: N/A</p>
+                                   <p>Text2: N/A</p>
+                            </div>
+                       </td>
                     </tr>
-
-                    <tr>
-                            <td class="block" align="center">
-                                    <img width="200" src="BOM.PNG" alt="">
-                                </td>
-                            <td class="block" align="center">this should stretch</td>
-                            <td class="block" align="center"><p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p>
-                                <p>这是一个展开字段。</p></td>
-                            <td class="block" align="center">amount x 2</td>
-                        </tr>
-
-                        <tr>
-                                <td class="block" align="center">
-                                        <img width="200" src="BOM.PNG" alt="">
-                                    </td>
-                                <td class="block" align="center">this should stretch</td>
-                                <td class="block" align="center"><p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p>
-                                    <p>这是一个展开字段。</p></td>
-                                <td class="block" align="center">amount x 2</td>
-                            </tr>
-
-                            <tr>
-                                    <td class="block" align="center">
-                                            <img width="200" src="BOM.PNG" alt="">
-                                        </td>
-                                    <td class="block" align="center">this should stretch</td>
-                                    <td class="block" align="center"><p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p>
-                                        <p>这是一个展开字段。</p></td>
-                                    <td class="block" align="center">amount x 2</td>
-                                </tr>
             </table>
     </div>
+    <script type="text/javascript">
+        for (var i=0,len=3; i<len; i++)
+        {
+            var node=document.getElementById("bomList").lastChild;
+            var copy = node.cloneNode(true);
+            document.getElementById("bomList").insertBefore(copy, node);
+        }
+    
+<!--    function setContentHeight(height) {-->
+<!--        document.getElementById("content").style.width=height + "px";-->
+<!--    }-->
+    function setContentHeight(height) {
+        var x=document.getElementById('bomList').rows;
+        x[0].height=height;
+        x[1].height=height;
+        x[2].height=height;
+    }
+    </script>
 </body>

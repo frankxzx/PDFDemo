@@ -16,6 +16,8 @@
 		01310D2E2195E3B4005687B3 /* Header.html in Resources */ = {isa = PBXBuildFile; fileRef = 01310D2D2195E3B4005687B3 /* Header.html */; };
 		01310D302195E4E3005687B3 /* Content.html in Resources */ = {isa = PBXBuildFile; fileRef = 01310D2F2195E4E3005687B3 /* Content.html */; };
 		01310D3B2195FC49005687B3 /* BNHtmlPdfKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 01310D392195FC49005687B3 /* BNHtmlPdfKit.m */; };
+		0191FAC921990F6300B01934 /* BOM.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 0191FAC721990F6300B01934 /* BOM.PNG */; };
+		0191FACA21990F6300B01934 /* BOMView.html in Resources */ = {isa = PBXBuildFile; fileRef = 0191FAC821990F6300B01934 /* BOMView.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		01310D2F2195E4E3005687B3 /* Content.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Content.html; sourceTree = "<group>"; };
 		01310D392195FC49005687B3 /* BNHtmlPdfKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHtmlPdfKit.m; sourceTree = "<group>"; };
 		01310D3A2195FC49005687B3 /* BNHtmlPdfKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHtmlPdfKit.h; sourceTree = "<group>"; };
+		0191FAC721990F6300B01934 /* BOM.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOM.PNG; sourceTree = "<group>"; };
+		0191FAC821990F6300B01934 /* BOMView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BOMView.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 			children = (
 				01310D2D2195E3B4005687B3 /* Header.html */,
 				01310D2F2195E4E3005687B3 /* Content.html */,
+				0191FAC721990F6300B01934 /* BOM.PNG */,
+				0191FAC821990F6300B01934 /* BOMView.html */,
 				01310D3A2195FC49005687B3 /* BNHtmlPdfKit.h */,
 				01310D392195FC49005687B3 /* BNHtmlPdfKit.m */,
 				01310D142195E379005687B3 /* AppDelegate.h */,
@@ -139,10 +145,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0191FAC921990F6300B01934 /* BOM.PNG in Resources */,
 				01310D212195E37C005687B3 /* LaunchScreen.storyboard in Resources */,
 				01310D1E2195E37C005687B3 /* Assets.xcassets in Resources */,
 				01310D1C2195E379005687B3 /* Main.storyboard in Resources */,
 				01310D2E2195E3B4005687B3 /* Header.html in Resources */,
+				0191FACA21990F6300B01934 /* BOMView.html in Resources */,
 				01310D302195E4E3005687B3 /* Content.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

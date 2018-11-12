@@ -37,7 +37,7 @@
 }
 
 - (CGRect)printableRect {
-    return UIEdgeInsetsInsetRect([self paperRect], self.contentInset);
+    return [self paperRect];
 }
 
 - (void)drawHeaderForPageAtIndex:(NSInteger)pageIndex inRect:(CGRect)headerRect {
@@ -69,7 +69,7 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 //    CGContextFillPath(ctx);
     
     //2. 添加文字信息
-    NSString *footerString = [NSString stringWithFormat:@"Page  %ld / %ld", self.pageRange.length, pageIndex+1];
+    NSString *footerString = [NSString stringWithFormat:@"Page  %ld / %ld", pageIndex+1, self.numberOfPages];
 //    #808080
     NSDictionary *attributes = @{
                                  NSForegroundColorAttributeName : [UIColor grayColor],
@@ -82,7 +82,9 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 }
 
 - (UIImage *)imageFromWebView:(UIWebView *)webView {
-    UIGraphicsBeginImageContextWithOptions(webView.frame.size, NO, 0.0);
+    CGSize webSize = webView.frame.size;
+    CGSize size = CGSizeMake(floor(webSize.width)-1, floor(webSize.height));
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     [webView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -213,46 +215,8 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
         self.pageSize = [BNHtmlPdfKit defaultPageSize];
         self.landscape = NO;
         
-        // Default 1/4" margins
-        CGFloat size = 0.25f * 72.0f;
-        CGFloat footerHeight = 80;
-        self.contentInset = UIEdgeInsetsMake(size, size, footerHeight, size);
-    }
-    return self;
-}
-
-- (id)initWithPageSize:(BNPageSize)pageSize {
-    if (self = [super init]) {
-        self.pageSize = pageSize;
-        self.landscape = NO;
-        
-        // Default 1/4" margins
-        CGFloat size = 0.25f * 72.0f;
-        self.contentInset = UIEdgeInsetsMake(size, size, size, size);
-    }
-    return self;
-}
-
-- (id)initWithPageSize:(BNPageSize)pageSize isLandscape:(BOOL)landscape {
-    if (self = [super init]) {
-        self.pageSize = pageSize;
-        self.landscape = landscape;
-        
-        CGFloat size = 0.25f * 72.0f;
-        self.contentInset = UIEdgeInsetsMake(size, size, size, size);
-    }
-    return self;
-}
-
-- (id)initWithCustomPageSize:(CGSize)pageSize {
-    if (self = [super init]) {
-        self.pageSize = BNPageSizeCustom;
-        self.customPageSize = pageSize;
-        self.landscape = NO;
-        
-        // Default 1/4" margins
-        CGFloat size = 0.25f * 72.0f;
-        self.contentInset = UIEdgeInsetsMake(size, size, size, size);
+        CGFloat footerHeight = 60;
+        self.contentInset = UIEdgeInsetsMake(0, 0, footerHeight, 0);
     }
     return self;
 }
@@ -380,9 +344,9 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 
 - (NSURL *)baseUrl {
     if (!_baseUrl) {
-        _baseUrl = [NSURL URLWithString:@"http://localhost"];
+        //_baseUrl = [NSURL URLWithString:@"http://localhost"];
+        _baseUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
     }
-    
     return _baseUrl;
 }
 
@@ -403,15 +367,16 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 - (void)saveHtmlAsPdf:(NSString *)html pageHeader:(NSString *)pageHeader
            pageFooter:(NSString *)pageFooter toFile:(NSString *)file {
     
+    CGFloat contentWidth = [self actualPageSize].width;
     if (pageHeader) {
-        self.headerWebView = [[UIWebView alloc] init];
+        self.headerWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, contentWidth, 300)];
         self.headerWebView.delegate = self;
         self.headerWebView.tag = HeaderWebViewTag;
         [self.headerWebView loadHTMLString:pageHeader baseURL:self.baseUrl];
     }
     
     if (pageFooter) {
-        self.footerWebView = [[UIWebView alloc] init];
+        self.footerWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, contentWidth, 300)];
         self.footerWebView.delegate = self;
         self.footerWebView.tag = FooterWebViewTag;
         [self.footerWebView loadHTMLString:pageFooter baseURL:self.baseUrl];
@@ -424,6 +389,7 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
     self.outputFile = file;
     
     self.webView = [[UIWebView alloc] init];
+    self.webView.scalesPageToFit = YES;
     self.webView.tag = ContentWebViewTag;
     self.webView.delegate = self;
     [self.webView loadHTMLString:html baseURL:self.baseUrl];
@@ -486,7 +452,14 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
             self.contentInset = UIEdgeInsetsMake(top, left, htmlViewHeight, right);
         }
         
-        if (self.isHeaderFinishLoad &&
+        if (self.headerWebView && self.isHeaderFinishLoad && self.isContentFinishLoad) {
+            CGFloat top = self.contentInset.top;
+            CGFloat bottom = self.contentInset.bottom;
+            CGFloat contentHeight = [self actualPageSize].height - top -bottom;
+            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setContentHeight('%f')", contentHeight]];
+//            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setContentHeight()"]];
+            [self _savePdf];
+        } else if (!self.headerWebView &&
             self.isContentFinishLoad) {
             [self _savePdf];
         }
@@ -534,7 +507,6 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
     }
     
     if (self.footerWebView) {
-        renderer.footerHeight = 50.0f;
         renderer.pageFooter = self.footerWebView;
     }
     
@@ -587,11 +559,13 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 }
 
 + (BNPageSize)defaultPageSize {
-    NSLocale *locale = [NSLocale currentLocale];
-    BOOL useMetric = [[locale objectForKey:NSLocaleUsesMetricSystem] boolValue];
-    BNPageSize pageSize = (useMetric ? BNPageSizeA4 : BNPageSizeLetter);
-    
-    return pageSize;
+//    NSLocale *locale = [NSLocale currentLocale];
+//    BOOL useMetric = [[locale objectForKey:NSLocaleUsesMetricSystem] boolValue];
+//    BNPageSize pageSize = (useMetric ? BNPageSizeA4 : BNPageSizeLetter);
+//
+//    return pageSize;
+//    return BNPageSizeLetter;
+    return BNPageSizeA4;
 }
 
 @end
