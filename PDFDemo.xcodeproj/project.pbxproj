@@ -15,9 +15,9 @@
 		01310D242195E37C005687B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01310D232195E37C005687B3 /* main.m */; };
 		01310D2E2195E3B4005687B3 /* Header.html in Resources */ = {isa = PBXBuildFile; fileRef = 01310D2D2195E3B4005687B3 /* Header.html */; };
 		01310D302195E4E3005687B3 /* Content.html in Resources */ = {isa = PBXBuildFile; fileRef = 01310D2F2195E4E3005687B3 /* Content.html */; };
-		01310D3B2195FC49005687B3 /* BNHtmlPdfKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 01310D392195FC49005687B3 /* BNHtmlPdfKit.m */; };
 		0191FAC921990F6300B01934 /* BOM.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 0191FAC721990F6300B01934 /* BOM.PNG */; };
 		0191FACA21990F6300B01934 /* BOMView.html in Resources */ = {isa = PBXBuildFile; fileRef = 0191FAC821990F6300B01934 /* BOMView.html */; };
+		0191FADA219AAA5F00B01934 /* libPDFRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0191FAD9219AAA5E00B01934 /* libPDFRenderKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,10 +33,10 @@
 		01310D232195E37C005687B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01310D2D2195E3B4005687B3 /* Header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Header.html; sourceTree = "<group>"; };
 		01310D2F2195E4E3005687B3 /* Content.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Content.html; sourceTree = "<group>"; };
-		01310D392195FC49005687B3 /* BNHtmlPdfKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHtmlPdfKit.m; sourceTree = "<group>"; };
 		01310D3A2195FC49005687B3 /* BNHtmlPdfKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHtmlPdfKit.h; sourceTree = "<group>"; };
 		0191FAC721990F6300B01934 /* BOM.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOM.PNG; sourceTree = "<group>"; };
 		0191FAC821990F6300B01934 /* BOMView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BOMView.html; sourceTree = "<group>"; };
+		0191FAD9219AAA5E00B01934 /* libPDFRenderKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPDFRenderKit.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0191FADA219AAA5F00B01934 /* libPDFRenderKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,12 +70,12 @@
 		01310D132195E379005687B3 /* PDFDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0191FAD9219AAA5E00B01934 /* libPDFRenderKit.a */,
 				01310D2D2195E3B4005687B3 /* Header.html */,
 				01310D2F2195E4E3005687B3 /* Content.html */,
 				0191FAC721990F6300B01934 /* BOM.PNG */,
 				0191FAC821990F6300B01934 /* BOMView.html */,
 				01310D3A2195FC49005687B3 /* BNHtmlPdfKit.h */,
-				01310D392195FC49005687B3 /* BNHtmlPdfKit.m */,
 				01310D142195E379005687B3 /* AppDelegate.h */,
 				01310D152195E379005687B3 /* AppDelegate.m */,
 				01310D172195E379005687B3 /* ViewController.h */,
@@ -164,7 +165,6 @@
 			files = (
 				01310D192195E379005687B3 /* ViewController.m in Sources */,
 				01310D242195E37C005687B3 /* main.m in Sources */,
-				01310D3B2195FC49005687B3 /* BNHtmlPdfKit.m in Sources */,
 				01310D162195E379005687B3 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

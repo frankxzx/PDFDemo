@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSString *bar = [[Foo alloc]init].bar;
+    
     // Override point for customization after application launch.
     NSString *path = [[NSBundle mainBundle]pathForResource:@"Header" ofType:@"html"];
     NSString *path2 = [[NSBundle mainBundle]pathForResource:@"BOMView" ofType:@"html"];

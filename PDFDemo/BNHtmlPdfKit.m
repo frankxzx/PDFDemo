@@ -14,6 +14,14 @@
 #define FooterWebViewTag 102
 
 
+@implementation Foo
+
+-(NSString *)bar {
+    return @"hello world";
+}
+
+@end
+
 #pragma mark - BNHtmlPdfKitPageRenderer Interface
 
 @interface BNHtmlPdfKitPageRenderer : UIPrintPageRenderer
@@ -37,7 +45,7 @@
 }
 
 - (CGRect)printableRect {
-    return [self paperRect];
+    return UIEdgeInsetsInsetRect([self paperRect], UIEdgeInsetsMake(0, 20, 0, 20));
 }
 
 - (void)drawHeaderForPageAtIndex:(NSInteger)pageIndex inRect:(CGRect)headerRect {
@@ -126,70 +134,6 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
 #pragma mark - BNHtmlPdfKit Implementation
 
 @implementation BNHtmlPdfKit
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url success:(void (^)(NSData *pdfData))completion failure:(void (^)(NSError *error))failure {
-    
-    return [BNHtmlPdfKit saveUrlAsPdf:url pageSize:[BNHtmlPdfKit defaultPageSize] isLandscape:NO success:completion failure:failure];
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url pageSize:(BNPageSize)pageSize success:(void (^)(NSData *pdfData))completion failure:(void (^)(NSError *error))failure {
-    
-    return [BNHtmlPdfKit saveUrlAsPdf:url pageSize:pageSize isLandscape:NO success:completion failure:failure];
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url pageSize:(BNPageSize)pageSize isLandscape:(BOOL)landscape success:(void (^)(NSData *pdfData))completion failure:(void (^)(NSError *error))failure {
-    
-    BNHtmlPdfKit *pdfKit = [[BNHtmlPdfKit alloc] initWithPageSize:pageSize isLandscape:landscape];
-    pdfKit.dataCompletionBlock = completion;
-    pdfKit.failureBlock = failure;
-    [pdfKit saveUrlAsPdf:url toFile:nil];
-    return pdfKit;
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url toFile:(NSString *)filename success:(void (^)(NSString *filename))completion failure:(void (^)(NSError *error))failure {
-    
-    return [BNHtmlPdfKit saveUrlAsPdf:url toFile:filename pageSize:[BNHtmlPdfKit defaultPageSize] isLandscape:NO success:completion failure:failure];
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url toFile:(NSString *)filename pageSize:(BNPageSize)pageSize success:(void (^)(NSString *filename))completion failure:(void (^)(NSError *error))failure {
-    
-    return [BNHtmlPdfKit saveUrlAsPdf:url toFile:filename pageSize:pageSize isLandscape:NO success:completion failure:failure];
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url toFile:(NSString *)filename pageSize:(BNPageSize)pageSize isLandscape:(BOOL)landscape success:(void (^)(NSString *filename))completion failure:(void (^)(NSError *error))failure {
-    
-    BNHtmlPdfKit *pdfKit = [[BNHtmlPdfKit alloc] initWithPageSize:pageSize isLandscape:landscape];
-    pdfKit.fileCompletionBlock = completion;
-    pdfKit.failureBlock = failure;
-    [pdfKit saveUrlAsPdf:url toFile:filename];
-    return pdfKit;
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url customPageSize:(CGSize)pageSize success:(void (^)(NSData *pdfData))completion failure:(void (^)(NSError *error))failure {
-    
-    BNHtmlPdfKit *pdfKit = [[BNHtmlPdfKit alloc] initWithCustomPageSize:pageSize];
-    pdfKit.dataCompletionBlock = completion;
-    pdfKit.failureBlock = failure;
-    [pdfKit saveUrlAsPdf:url toFile:nil];
-    return pdfKit;
-    
-}
-
-+ (BNHtmlPdfKit *)saveUrlAsPdf:(NSURL *)url toFile:(NSString *)filename customPageSize:(CGSize)pageSize success:(void (^)(NSString *filename))completion failure:(void (^)(NSError *error))failure {
-    
-    BNHtmlPdfKit *pdfKit = [[BNHtmlPdfKit alloc] initWithCustomPageSize:pageSize];
-    pdfKit.fileCompletionBlock = completion;
-    pdfKit.failureBlock = failure;
-    [pdfKit saveUrlAsPdf:url toFile:filename];
-    return pdfKit;
-    
-}
 
 + (BNHtmlPdfKit *)saveHtmlAsPdf:(NSString *)contentHtml
                         toFile:(NSString *)filename
@@ -453,10 +397,10 @@ CGPoint computeStartPoint(CGRect rect,CGSize size) {
         }
         
         if (self.headerWebView && self.isHeaderFinishLoad && self.isContentFinishLoad) {
-            CGFloat top = self.contentInset.top;
-            CGFloat bottom = self.contentInset.bottom;
-            CGFloat contentHeight = [self actualPageSize].height - top -bottom;
-            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setContentHeight('%f')", contentHeight]];
+//            CGFloat top = self.contentInset.top;
+//            CGFloat bottom = self.contentInset.bottom;
+//            CGFloat contentHeight = [self actualPageSize].height - top -bottom;
+//            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setContentHeight('%f')", contentHeight]];
 //            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"setContentHeight()"]];
             [self _savePdf];
         } else if (!self.headerWebView &&

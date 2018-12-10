@@ -1,5 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
 
     table.dataintable {
         border-collapse: collapse;
@@ -24,70 +27,137 @@
     }
 
     table.dataintable p {
-        margin: 10px 0 0 0;
+        margin: 10px;
     }
 
-</style>
+    @media print {
+    .pagebreak-before:first-child { display: block; break-before: avoid; }
+    .pagebreak-before { display: block; break-before: always; }
+    }
+    
+    .pagebreak-before {
+        margin: 20px 0px 20px 0px
+    }
+
+    td {
+        align:"center";
+    }
+
+    .bomMainInfo {
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 150px;
+        margin: 20px 0px 20px 0px;
+    }
+
+    .bomMainInfo > * {
+        margin: 20px;
+    }
+    
+    .bomMainInfo p {
+        margin: 0px;
+    }
+
+    </style>
 </head>
 
 <body>
-    <div>
-            <table id="bomList" class="dataintable" style="width: 100%;">
-                    <tr>
-                        <td align="center" id="content" height="700px">
-                                <img width=150 src="BOM.PNG" alt="">
-                        </td>
-                        <td align="left" id="content" height="700px">
-                            <div style="margin: 20px 20px 20px 20px">
-                                <p>CommissionID: 690017164</p>
-                                <p>MaterialID: 50624749</p>
-                                <p>Description: TABLILLA ANTIDESLIZANTE P1000 </p>
-                                <p>Amount: 2</p>
-                                <p>Note: This is a note form user XXXXXXXXX </p>
-                            </div>
-                        </td>
-                        <td  align="left" id="content">
-                            <div style="margin: 20px 20px 20px 20px">
-                                   <p>GroupID: 500</p>
-                                   <p>SubGroupID: 510</p>
-                                   <p>SubSubGroupID: 513</p>
-                                   <p>DimensionUnit: mm</p>
-                                   <p>Material: N/A</p>
-                                   <p>SEPEParameter: N/A</p>
-                                   <p>DrawingNo: N/A</p>
-                                   <p>Version: N/A</p>
-                                   <p>PartnumID: </p>
-                                   <p>StandardMaterial: False</p>
-                                   <p>WearPart: False</p>
-                                   <p>Color: N/A</p>
-                                   <p>Diameter: 0</p>
-                                   <p>Weight: 4.9 kg</p>
-                                   <p>Length: 1138.5 mm</p>
-                                   <p>Width: 84 mm</p>
-                                   <p>Height: 140.8 mm</p>
-                                   <p>Text1: N/A</p>
-                                   <p>Text2: N/A</p>
-                            </div>
-                       </td>
-                    </tr>
-            </table>
-    </div>
-    <script type="text/javascript">
-        for (var i=0,len=3; i<len; i++)
-        {
-            var node=document.getElementById("bomList").lastChild;
-            var copy = node.cloneNode(true);
-            document.getElementById("bomList").insertBefore(copy, node);
-        }
-    
-<!--    function setContentHeight(height) {-->
-<!--        document.getElementById("content").style.width=height + "px";-->
-<!--    }-->
-    function setContentHeight(height) {
-        var x=document.getElementById('bomList').rows;
-        x[0].height=height;
-        x[1].height=height;
-        x[2].height=height;
-    }
-    </script>
-</body>
+    <div id="main">
+        <div class="pagebreak-before" id="onePage">
+            <div id="bom">
+                <div class="bomMainInfo">
+                    <b>#1</b>
+                    <img height=100% src="BOM.PNG" alt="BomImage">
+                    <div>
+                        <p>CommissionID: 690017164</p>
+                        <p>MaterialID: 50624749</p>
+                        <p>Description: TABLILLA ANTIDESLIZANTE P1000 </p>
+                        <p>Amount: 2</p>
+                        <p>Note: This is a note form user XXXXXXXXX </p>
+                    </div>
+                </div>
+                    <table id="bomList" class="dataintable" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <p>GroupID: 500</p>
+                            </td>
+                            <td>
+                                <p>SubGroupID: 510</p>
+                            </td>
+                            <td>
+                                <p>SubSubGroupID: 513</p>
+                            </td>
+                            <td>
+                                <p>DimensionUnit: mm</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Material: N/A</p>
+                            </td>
+                            <td>
+                                <p>SEPEParameter: N/A</p>
+                            </td>
+                            <td>
+                                <p>DrawingNo: N/A</p>
+                            </td>
+                            <td>
+                                <p>Version: N/A</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>PartnumID: </p>
+                            </td>
+                            <td>
+                                <p>StandardMaterial: False</p>
+                            </td>
+                            <td>
+                                <p>WearPart: False</p>
+                            </td>
+                            <td>
+                                <p>Color: N/A</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Diameter: 0</p>
+                            </td>
+                            <td>
+                                <p>Weight: 4.9 kg</p>
+                            </td>
+                            <td>
+                                <p>Length: 1138.5 mm</p>
+                            </td>
+                            <td>
+                                <p>Width: 84 mm</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Height: 140.8 mm</p>
+                            </td>
+                            <td>
+                                <p>Text1: N/A</p>
+                            </td>
+                            <td>
+                                <p>Text2: N/A</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var html = $("#bom").clone().html();
+            document.getElementById('onePage').insertAdjacentHTML('beforeend', html);
+            
+            var onePageHtml = $("#onePage").clone().html();
+            for (var k = 0, length = 100; k < length; k++) {
+                document.getElementById('main').insertAdjacentHTML('beforeend', onePageHtml);
+            }
+        </script>
+    </body>
+    </html>
